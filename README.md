@@ -190,6 +190,49 @@ The final dashboard includes:
 
 <img width="775" height="394" alt="image" src="https://github.com/user-attachments/assets/ab492386-74e2-459e-a942-dc47e3c155e0" />
 
+---
+
+## How to Run (Lab Setup)
+
+### Requirements
+
+- Elasticsearch
+- Logstash
+- Kibana
+- Java
+- Linux environment
+
+Ensure version compatibility between ELK components.
+
+### Start Services
+
+```bash
+sudo systemctl start elasticsearch
+sudo systemctl start kibana
+```
+
+### Run CSV ETL Pipeline
+
+```bash
+/usr/share/logstash/bin/logstash -f logstash/csv-cities-etl.conf
+```
+
+### Run Syslog Monitoring Pipeline
+
+```bash
+/usr/share/logstash/bin/logstash -f logstash/syslog-pipeline.conf
+```
+
+### Verification
+
+In Kibana:
+
+- Create index pattern `ciudades`
+- Create index pattern `syslogs`
+- Validate structured fields in Discover
+- Build visualizations
+
+Note: `sincedb_path => "/dev/null"` is used for lab reprocessing.
 
 ---
 
